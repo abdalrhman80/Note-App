@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --body-color: #f7f7f7;
+    --navbar-bg-color: #f1f1f1;
+    --border-color: #c5cad0;
+    --white: #fff;
+    --black: #000;
+    --card-box-shadow: #0000000d 0 5px 15px,
+        #0000001a 0 4px 6px;
+    --main-color: #1F2937;
+    --note-color: #fde26a;
+    --edit-note-options-bg: #f8f9fa;
+    // --note-color: #9ad5f3;
+    // --note-color: #90c6e1;
+    // --note-color: #7ba7ee;
+}
+
+body {
+    background-color: var(--body-color);
+    font-family: "Poppins", sans-serif;
+    color: var(--main-color);
+    position: relative;
+
+    &::-webkit-scrollbar {
+        width: 11.5px
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #e8e7e7;
+        border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #c2c9cf;
+        border-radius: 5px;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.font-small {
+    font-size: 14px;
+}
+
+ul {
+    margin-bottom: 0 !important;
+    padding-left: 0 !important;
+}
+
+.container,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl {
+    @media screen and (min-width: 768px) {
+        max-width: 750px;
+    }
+
+    @media screen and (min-width: 992px) {
+        max-width: 920px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        max-width: 1150px;
+    }
+
+}
+
+.p-input-icon-left {
+    input {
+        padding: 6px 12px 6px 40px;
+        border-color: transparent transparent var(--border-color) transparent;
+        border-radius: 5px;
+
+        &::placeholder {
+            font-size: 14px;
+            transition: font-size 0.2s, font-weight 0.2s;
+        }
+
+        &:focus {
+            box-shadow: none;
+
+            &::placeholder {
+                font-size: 15px;
+                font-weight: 400;
+                color: var(--black);
+            }
+        }
+    }
+
+    i {
+        font-size: 13px;
+        margin-top: -6px;
+    }
+}
+
+.register .container,
+.login .container {
+    height: 90vh;
+
+    @media screen and (max-width: 768px) {
+        height: auto;
+    }
+}
+
+.custom-input-form {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.custom-card {
+    background-color: var(--white);
+    box-shadow: var(--card-box-shadow);
+
+    .register-image,
+    .login-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: 450px;
+            height: 450px;
+
+            @media screen and (min-width: 768px) and (max-width: 992px) {
+                width: 380px;
+            }
+
+            @media screen and (max-width: 768px) {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+}

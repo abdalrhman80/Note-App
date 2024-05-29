@@ -1,0 +1,69 @@
+<p-toast [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+
+<section class="login">
+    <div class="container d-flex flex-column justify-content-center">
+        <div class="row gx-4 custom-card rounded-3 align-items-center pb-md-3 px-3 my-4 mx-2">
+
+            <div class="col-12">
+                <h2 class=" fw-semibold fs-1 mb-0 mt-4 text-center">Login</h2>
+            </div>
+
+            <div class="col-md-6">
+                <figure class="login-image my-0 ">
+                    <img src="assets/images/Login.svg" alt="Sign-in-img">
+                </figure>
+            </div>
+
+            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                <div class="login-form w-100 py-3">
+                    <form [formGroup]="loginForm" (ngSubmit)="signIn(loginForm)">
+
+                        <div class="custom-input-form ">
+                            <span class=" p-input-icon-left w-100">
+                                <i class="fa-solid fa-envelope"></i>
+                                <input class=" w-100 " pInputText id="email" type="text" formControlName="email"
+                                    placeholder="Email">
+                            </span>
+                            <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched">
+                                <p *ngIf="loginForm.get('email')?.errors?.['required']" class="p-error mb-0 ms-1">
+                                    <small>Input is required.</small>
+                                </p>
+                                <p *ngIf="loginForm.get('email')?.errors?.['email']" class="p-error mb-0 ms-1">
+                                    <small>Enter a valid email.</small>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="custom-input-form ">
+                            <span class="p-input-icon-left p-input-icon-right w-100">
+                                <i class="fa-solid fa-lock"></i>
+                                <input #passwordInput pInputText class="w-100" id="password" type="password"
+                                    formControlName="password" placeholder="Password">
+                                <i *ngIf="passwordInput.type == 'password'" class="fa-regular fa-eye cursor-pointer"
+                                    (click)="togglePassword()"></i>
+                                <i *ngIf="passwordInput.type == 'text'" class="fa-regular fa-eye-slash cursor-pointer"
+                                    (click)="togglePassword()"></i>
+                            </span>
+                            <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched">
+                                <p *ngIf="loginForm.get('password')?.errors?.['required']" class="p-error mb-0 ms-1">
+                                    <small>Input is required.</small>
+                                </p>
+                                <p *ngIf="loginForm.get('password')?.errors?.['pattern']" class="p-error mb-0 ms-1">
+                                    <small>Password between 6 and 20 characters.</small>
+                                </p>
+                            </div>
+                        </div>
+
+                        <button [disabled]="loginForm.invalid" type="submit"
+                            class="btn btn-primary my-3 w-100 d-block m-auto">
+                            <span *ngIf="!isLoading"> Sign In</span>
+                            <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin ms-2"></i>
+                        </button>
+                    </form>
+                    <p class="text-center my-3">Don't have an account? <a routerLink="/register">Register</a></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

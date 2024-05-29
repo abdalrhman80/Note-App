@@ -1,0 +1,77 @@
+.note-card {
+    background-color: var(--note-color);
+    box-shadow: var(--card-box-shadow);
+
+    .edit-note {
+        background-color: var(--edit-note-options-bg);
+        box-shadow: var(--card-box-shadow);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        position: absolute;
+        top: -18px;
+        right: -18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.2s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+    }
+
+    &:hover .edit-note {
+        opacity: 1;
+    }
+
+}
+
+:host ::ng-deep {
+    .p-scrollpanel.p-component {
+        height: 150px;
+        max-height: 150px;
+
+        @media screen and (max-width: 576px) {
+            height: 110px;
+            max-height: 110px;
+        }
+    }
+
+    .p-scrollpanel .p-scrollpanel-bar {
+        background: var(--body-color);
+    }
+
+    .p-scrollpanel-bar-y {
+        width: 8px;
+    }
+
+    .p-scrollpanel-content {
+        padding-bottom: 8px;
+        padding-right: 20px;
+
+        @media screen and (max-width: 576px) {
+            padding-right: 26px;
+        }
+    }
+
+    .p-button {
+        border-radius: 50%;
+    }
+
+    .p-menu.p-menu-overlay {
+        background: var(--edit-note-options-bg);
+        box-shadow: var(--card-box-shadow);
+    }
+}
+
+.add-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 999;
+
+    @media screen and (max-width: 576px) {
+        right: 10px;
+        bottom: 10px;
+        width: 50px;
+        height: 50px;
+    }
+}

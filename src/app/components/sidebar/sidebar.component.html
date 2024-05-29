@@ -1,0 +1,47 @@
+<aside class="sidebar">
+    <p-sidebar [(visible)]="sidebarVisible" position="left" [baseZIndex]="10000" (onHide)="hideSidebar()">
+        <ng-template pTemplate="header">
+            <a class="nav-link d-flex align-items-center justify-content-center" routerLink="/All-notes"
+                (click)="sidebarVisible = false">
+                <img class="logo mx-1" src="assets/images/Note-Logo.png" alt="Logo">
+                <p class="m-0">Note App</p>
+            </a>
+        </ng-template>
+        <ng-template pTemplate="content">
+            <ul class="navbar-nav flex-column ms-auto mt-2 mt-lg-0">
+                <li class="nav-item mb-3" *ngIf="!isLogin">
+                    <a class="nav-link" routerLink="/login" (click)="sidebarVisible = false">
+                        <i class="fa-solid fa-right-to-bracket me-2"></i>
+                        <span>Login</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-3" *ngIf="!isLogin">
+                    <a class="nav-link" routerLink="/register" (click)="sidebarVisible = false">
+                        <i class="fa-solid fa-user-plus me-2"></i>
+                        <span>Register</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-3" *ngIf="isLogin">
+                    <a class="nav-link d-flex align-items-center" routerLink="/All-notes"
+                        (click)="sidebarVisible = false">
+                        <!-- <i class="fa-regular fa-sticky-note me-2"></i> -->
+                        <img src="assets/images/add-note.png" class="add-note me-2" alt="add-note">
+                        <span>Notes</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-3" *ngIf="isLogin">
+                    <a class="nav-link" (click)="sidebarVisible = false">
+                        <i class="fa-solid fa-user me-2"></i>
+                        <span>Account</span>
+                    </a>
+                </li>
+            </ul>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <a class="nav-link cursor-pointer" (click)="signOut()" *ngIf="isLogin">
+                <i class="fa-solid fa-right-from-bracket me-2"></i>
+                <span> Sign out</span>
+            </a>
+        </ng-template>
+    </p-sidebar>
+</aside>

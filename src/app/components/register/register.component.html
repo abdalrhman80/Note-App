@@ -1,0 +1,122 @@
+<p-toast [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+
+<section class="register ">
+    <div class="container d-flex flex-column justify-content-center ">
+        <div class="row gx-4 custom-card rounded-3 align-items-center pb-md-2 px-3 my-4 mx-2">
+
+            <div class="col-12">
+                <h2 class="fw-semibold fs-1 mb-0 mt-4 text-center">Register</h2>
+            </div>
+
+            <div class="col-md-6 mb-md-4 ">
+                <figure class="register-image my-0">
+                    <img src="assets/images/Sign-up.svg" alt="Sign-up-img">
+                </figure>
+            </div>
+
+            <div class="col-md-6 mt-md-4 ">
+                <div class="register-form w-100 py-3">
+                    <form [formGroup]="registerForm" (ngSubmit)="signUp(registerForm)">
+                        <div class="custom-input-form">
+                            <span class="p-input-icon-left w-100">
+                                <i class="fa-solid fa-signature"></i>
+                                <input pInputText class="w-100" id="name" type="text" formControlName="name"
+                                    placeholder="Name">
+                            </span>
+                            <div *ngIf="registerForm.get('name')?.errors && registerForm.get('name')?.touched">
+                                <p *ngIf="registerForm.get('name')?.errors?.['required']" class="p-error mb-0 ms-1">
+                                    <small>Input is required.</small>
+                                </p>
+                                <p *ngIf="registerForm.get('name')?.errors?.['minlength']" class="p-error mb-0 ms-1">
+                                    <small>Min length is 3.</small>
+                                </p>
+                                <p *ngIf="registerForm.get('name')?.errors?.['maxlength']" class="p-error mb-0 ms-1">
+                                    <small>Max length is 20.</small>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="custom-input-form">
+                            <span class="p-input-icon-left w-100">
+                                <i class="fa-solid fa-envelope"></i>
+                                <input pInputText class="w-100" id="email" type="text" formControlName="email"
+                                    placeholder="Email">
+                            </span>
+                            <div *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched">
+                                <p *ngIf="registerForm.get('email')?.errors?.['required']" class="p-error mb-0 ms-1">
+                                    <small>Input is required.</small>
+                                </p>
+                                <p *ngIf="registerForm.get('email')?.errors?.['email']" class="p-error mb-0 ms-1">
+                                    <small>Enter a valid email.</small>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="custom-input-form">
+                            <span class="p-input-icon-left p-input-icon-right w-100">
+                                <i class="fa-solid fa-lock"></i>
+                                <input #passwordInput pInputText class="w-100" id="password" type="password"
+                                    formControlName="password" placeholder="Password">
+                                <i *ngIf="passwordInput.type == 'password'" class="fa-regular fa-eye cursor-pointer"
+                                    (click)="togglePassword()"></i>
+                                <i *ngIf="passwordInput.type == 'text'" class="fa-regular fa-eye-slash cursor-pointer"
+                                    (click)="togglePassword()"></i>
+                            </span>
+                            <div *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched">
+                                <p *ngIf="registerForm.get('password')?.errors?.['required']" class="p-error mb-0 ms-1">
+                                    <small>Input is required.</small>
+                                </p>
+                                <p *ngIf="registerForm.get('password')?.errors?.['pattern']" class="p-error mb-0 ms-1">
+                                    <small>Password between 6 and 20 characters.</small>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="custom-input-form">
+                            <span class="p-input-icon-left w-100">
+                                <i class="fa-solid fa-user"></i>
+                                <input pInputText class="w-100" id="age" type="text" formControlName="age"
+                                    placeholder="Age">
+                            </span>
+                            <div *ngIf="registerForm.get('age')?.errors && registerForm.get('age')?.touched">
+                                <p *ngIf="registerForm.get('age')?.errors?.['required']" class="p-error mb-0 ms-1">
+                                    <small>Input is required.</small>
+                                </p>
+                                <p *ngIf="registerForm.get('age')?.errors?.['min']" class="p-error mb-0 ms-1">
+                                    <small>Min age is 10.</small>
+                                </p>
+                                <p *ngIf="registerForm.get('age')?.errors?.['max']" class="p-error mb-0 ms-1">
+                                    <small>Max age is 100.</small>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="custom-input-form">
+                            <span class="p-input-icon-left w-100">
+                                <i class="fa-solid fa-mobile"></i>
+                                <input pInputText class="w-100" id="phone" type="tel" formControlName="phone"
+                                    placeholder="Phone">
+                            </span>
+                            <div *ngIf="registerForm.get('phone')?.errors && registerForm.get('phone')?.touched">
+                                <p *ngIf="registerForm.get('phone')?.errors?.['required']" class="p-error mb-0 ms-1">
+                                    <small>Input is required.</small>
+                                </p>
+                                <p *ngIf="registerForm.get('phone')?.errors?.['pattern']" class="p-error mb-0 ms-1">
+                                    <small>Enter a valid egyptian phone number.</small>
+                                </p>
+                            </div>
+                        </div>
+
+                        <button [disabled]="registerForm.invalid" type="submit"
+                            class="btn btn-primary submit-button my-3 w-100 d-block m-auto">
+                            <span *ngIf="!isLoading"> Sign Up</span>
+                            <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin ms-2"></i>
+                        </button>
+                    </form>
+                    <p class="text-center my-3">Already have an account? <a routerLink="/login">Login</a></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

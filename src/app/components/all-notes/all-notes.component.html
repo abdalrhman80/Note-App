@@ -1,0 +1,56 @@
+<p-menu #OptionsMenu [model]="menuItems" [popup]="true" appendTo="body"></p-menu>
+<p-toast [breakpoints]="{'567px': {width: '100%', right: '0px'}}"></p-toast>
+
+<section class="all-notes mt-2 mb-3 px-1">
+    <div class="container">
+        <h1 class="fw-semibold mb-2 mt-1">Notes</h1>
+    </div>
+
+    <div class="notes pt-2 ms-md-2 ms-1 rounded-3">
+        <div class="container">
+            <div class="row gy-3 g-4 ">
+                <div class=" col-xl-4 col-md-6" *ngFor="let note of notes">
+                    <div class="note-card p-3 rounded-1 position-relative ">
+                        <div class="note-card-header d-flex justify-content-between mb-2 overflow-hidden">
+                            <h3 class="fw-semibold mb-0 h4">{{note.title}}</h3>
+                            <div class="fs-6 edit-note cursor-pointer"
+                                (click)="showOptions($event, note._id, note.title, note.content)">
+                                <i class="fa-solid fa-pen-to-square "></i>
+                            </div>
+                        </div>
+                        <div class="note-card-body">
+                            <p-scrollPanel>
+                                <p class="mb-2">{{note.content}}</p>
+                            </p-scrollPanel>
+                        </div>
+                    </div>
+                </div>
+                <!-- <p >No Notes Found</p> -->
+                <!-- <div class=" col-xl-4 col-md-6" *ngFor="let note of notes">
+                    <div class="note-card p-3 rounded-1 position-relative ">
+                        <div class="note-card-header d-flex justify-content-between mb-2 overflow-hidden">
+                            <h3 class="fw-semibold mb-0 h4">{{note.title}}</h3>
+                            <div class="fs-6 edit-note cursor-pointer"
+                                (click)="showOptions($event, note._id, note.title, note.content)">
+                                <i class="fa-solid fa-pen-to-square "></i>
+                            </div>
+                        </div>
+                        <div class="note-card-body">
+                            <p-scrollPanel>
+                                <p class="mb-2">{{note.content}}</p>
+                            </p-scrollPanel>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<p-button severity="secondary" [ariaLabel]="'Add-Note'" [ngClass]="['add-button']" [rounded]="true"
+    icon="fa-solid fa-plus" (onClick)="showDialog1()"></p-button>
+
+<app-add-note [visible1]="visible1" (visibleChange)="hideDialog1($event)"></app-add-note>
+
+<app-edit-note *ngIf="visible2" [visible2]="visible2" [noteId]="noteId" [noteTitle]="noteTitle"
+    [noteContent]="noteContent" (visibleChange)="hideDialog2($event)"></app-edit-note>

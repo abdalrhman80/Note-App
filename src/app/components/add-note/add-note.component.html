@@ -1,0 +1,23 @@
+<p-dialog header="Note Details" [(visible)]="visible1" [modal]="true" [style]="{ width: '50rem' }"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [draggable]="false" (onHide)="hideDialog()">
+    <ng-template pTemplate="header">
+        <h4 class="font-bold">Add Note</h4>
+    </ng-template>
+
+    <ng-template pTemplate="content">
+        <form [formGroup]="noteDetails" (ngSubmit)="sendNoteDetails(noteDetails)">
+            <div class="card mb-0 mt-3">
+                <input formControlName="title" [autofocus]="true" type="text" id="noteTitle" pInputText
+                    placeholder="Note Title" />
+            </div>
+            <div class="card mt-3 mb-3">
+                <textarea formControlName="content" id="noteContent" placeholder="Content of the note" rows="5"
+                    cols="30" pInputTextarea></textarea>
+            </div>
+            <div class="buttons d-flex justify-content-end ">
+                <p-button label="Close" severity="secondary" class=" me-2" (click)="visible1 = false"></p-button>
+                <p-button [disabled]="noteDetails.invalid" type="Save" label="Submit" severity="success"></p-button>
+            </div>
+        </form>
+    </ng-template>
+</p-dialog>

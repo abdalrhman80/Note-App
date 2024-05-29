@@ -1,0 +1,25 @@
+.logo {
+    width: 25px;
+    height: 25px;
+}
+
+.add-note {
+    width: 16px;
+    height: 16px;
+}
+
+:host ::ng-deep {
+    .p-sidebar-left {
+        width: 350px;
+        background-color: var(--body-color);
+
+        @media screen and (max-width: 576px) {
+            width: 270px;
+        }
+    }
+
+    .p-sidebar-header {
+        display: flex ;
+        justify-content: space-between;
+    }
+}
